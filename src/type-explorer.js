@@ -20,7 +20,7 @@ console.log("8" - 2);
 console.log("8" * 2);
 console.log("8" / 2);
 
-// 3 eksplicītās konversijas ar robežgadījumiem
+// 5 eksplicītās konversijas ar robežgadījumiem
 
 console.log("\n=== EKSPLICĪTĀS KONVERSIJAS AR ROBEŽGADĪJUMIEM ===");
 console.log(Number("abc"));

@@ -1,27 +1,25 @@
-let header = "";       // Izvada galveni  // Pievienots no uzdevuma
-for(let j = 1; j <= N; j++) {
-    header += `${j.toString().padStart(3)} `;   // Formatē ar atstarpēm
-}
-console.log(header);
+// Loops - for, while, do-while
 
-console.log("\nSāk ciklu:");   // Pievienots no uzdevuma
-while(i <= N) {
-    console.log(` Cikls: i=${i}, summa=${summa}`);
-    summa = summa +i;
-console.log(` Summa <- ${summa - i} + ${i} = ${summa}`);
-i = i +1;
-console.log(` i <- ${i - 1} + 1 = ${i}`);
+console.log("=== 1. For cikls ===");
+for(let i = 1; i <= 5; i++) {
+    console.log(`For cikls - solis ${i}`);
 }
-console.log("Cikls beidzas");
 
-console.log("\n=== 3. DO WHILE CIKLS ==="); // Pievienots no MI
+console.log("\n=== 2. While cikls ===");
 let j = 1;
-do {
-    console.log(`Do while cikls: j=${j}`);
+while(j <= 5) {
+    console.log(`While cikls - solis ${j}`);
     j++;
-} while(j <= 5);
-console.log("\n=== Testēšana ===");
-console.log("Visi cikli izpildās 5 reizes ");
+}
+
+console.log("\n=== 3. Do-while cikls ===");
+let k = 1;
+do {
+    console.log(`Do-while cikls - solis ${k}`);
+    k++;
+} while(k <= 5);
+
+console.log("\nVisi cikli pabeigti!");
 
 
 

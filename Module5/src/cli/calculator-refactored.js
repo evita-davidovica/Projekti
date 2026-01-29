@@ -17,7 +17,7 @@ function modulo(a, b) { return a % b; }
 
 // Formatēšana (atsevišķa funkcija)
 function formatResult(result) {
-    return Number(result.toFixed(2));
+    return result.toFixed(2);
 }
 
 // Galvenā funkcija (izsauc pārējās)

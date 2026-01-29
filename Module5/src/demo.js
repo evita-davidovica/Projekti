@@ -1,4 +1,4 @@
-const utils = require('./utils.js');
+const utils = require('./utils/utils.js');
 console.log("=== DEMO MODULIS ===\n");
 
 // Virkņu testi 
@@ -43,7 +43,7 @@ console.log('average([]):', utils.average([]));  //Tukšs masīvs, vidējais = 0
 console.log("\nDatuma testi:");
 console.log('formatDate(new Date("2024-02-28")):', utils.formatDate(new Date("2024-02-28"))); // Formatē datumu "28-02-2024"
 console.log('formatDate(new Date("2023-12-05"):', utils.formatDate(new Date("2023-12-05")));  // Formatē datumu "05-12-2023"
-console.log('formatDate(new Date("šodien")):', utils.formatDate(new Date("šodien"))); // Formatē šodienas datumu 
+console.log('formatDate(new Date()):', utils.formatDate(new Date())); // Formatē šodienas datumu 
 
 console.log('calculateAge(new Date("2000-01-01")):', utils.calculateAge(new Date("2000-01-01"))); // Aprēķina vecumu (26 gadi)
 console.log('calculateAge(new Date("2010-06-15")):', utils.calculateAge(new Date("2010-06-15"))); // Aprēķina vecumu (15 gadi)

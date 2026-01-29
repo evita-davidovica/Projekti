@@ -5,7 +5,7 @@
 
 /** 
 * capitalize - Pārvērš pirmo burtu par lielo burtu
-* @param {string} - Ievades virkne
+* @param {string} str - Ievades virkne
 * @returns {string} - Virkne ar lielo pirmo burtu
 * @example capitalize("hello") => "Hello"
 */
@@ -30,7 +30,7 @@ function truncate(str, maxLen) {
 * countWords - Saskaita vārdus virknē
 * @param {string} str - Ievades virkne
 * @returns {number} - Vārdu skaits
-* @example counWords("hello world test") => 3
+* @example countWords("hello world test") => 3
 */
 function countWords(str) {
     const cleaned = str.trim();
@@ -85,7 +85,7 @@ function factorial(n) {
 
 /**
 * sum  - Saskaita visus skaitļus masīvā (bez iebūvētām metodēm)
-* @param {number[]} arr Skaitļu masīvs
+* @param {number[]} arr - Skaitļu masīvs
 * @return {number} - Skaitļu summa
 * @example sum([1,2,3]) => 6
 */

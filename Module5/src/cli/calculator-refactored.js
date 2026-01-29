@@ -1,6 +1,6 @@
 // Module3 calculator.js refaktorizēts -> modulāra bibliotēka
 
-// Validācija
+// Validācija (atsevišķa funkcija)
 function isValid(a, op, b) {
     if (typeof a !== 'number' || typeof b !== 'number' || isNaN(a) || isNaN(b)) return false;
     if (!['+', '-', '*', '/', '%'].includes(op)) return false;
@@ -20,7 +20,7 @@ function formatResult(result) {
     return result.toFixed(2);
 }
 
-// Galvenā funkcija (izsauc pārējās)
+// Galvenā funkcija (izsauc atbilstošo operāciju pēc operatora)
 function calculate(a, op, b) {
     if (!isValid(a, op, b)) return null;
     

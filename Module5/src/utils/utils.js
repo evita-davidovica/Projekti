@@ -11,7 +11,7 @@
 */
 function capitalize(str) {
     if (str.length === 0) return str;
-    return str[0].toUpperCase() + str.slice(1);[web:8][web:17]
+    return str[0].toUpperCase() + str.slice(1);
 }
 
 /**
@@ -23,7 +23,7 @@ function capitalize(str) {
 */
 function truncate(str, maxLen) {
     if (str.length <= maxLen) return str;
-    return str.slice(0, maxLen) + "...";[web:9]
+    return str.slice(0, maxLen) + "...";
 }
 
 /** 
@@ -49,7 +49,7 @@ function countWords(str) {
 function clamp(num, min, max) {
     if (num < min) return min;
     if (num > max) return max;
-    return num;[web:10]
+    return num;
 }
 
 /**
@@ -65,7 +65,7 @@ function isPrime(num) {
     for (let i = 5; i * i <= num; i += 6) {
         if (num % i === 0 || num % (i + 2) === 0) return false;
     }
-    return true;[web:12]
+    return true;
 }
 
 /**
@@ -80,7 +80,7 @@ function factorial(n) {
     for (let i = 2; i <= n; i++) {
         result *= i;
     }
-    return result;[web:13]
+    return result;
 }
 
 /**
@@ -94,7 +94,7 @@ function sum(arr) {
     for (let i = 0; i < arr.length; i++) {
         total += arr[i];
     }
-    return total;[web:14]
+    return total;
 }
 
 /**
@@ -105,7 +105,7 @@ function sum(arr) {
 */
 function average(arr) {
     if (arr.length === 0) return 0;
-    return sum(arr) / arr.length;[web:15]
+    return sum(arr) / arr.length;
 }
 
 /**
@@ -118,7 +118,7 @@ function formatDate(date) {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;[web:18]
+    return `${year}-${month}-${day}`;
 }
 
 /**
@@ -134,7 +134,7 @@ function calculateAge(birthDate) {
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
         age--;
     }
-    return age;[web:19][web:25]
+    return age;
 }
 
 module.exports = {

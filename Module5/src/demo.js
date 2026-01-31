@@ -49,7 +49,18 @@ console.log('calculateAge(new Date("2000-01-01")):', utils.calculateAge(new Date
 console.log('calculateAge(new Date("2010-06-15")):', utils.calculateAge(new Date("2010-06-15"))); // Aprēķina vecumu (15 gadi)
 console.log('calculateAge(new Date(new Date("2025-22-07"))):', utils.calculateAge(new Date("2025-07-22"))); // Aprēķina vecumu, nav pilnu gadu (0 gadi)
 
+// Validācijas testi
+const validators = require(`./validators/validators.js`);
+console.log("\nValidācijas testi:");
+
+console.log("isEmail('test@example.com'):", validators.isEmail('test@example.com'));
+console.log("isPhoneNumber('+37112345678'):", validators.isPhoneNumber('+37112345678'));
+console.log("isValidAge(25):", validators.isValidAge(25));
+console.log("isStrongPassword('Password'):", validators.isStrongPassword('Password'));
+console.log("isValidDate('2024-02-29'):", validators.isValidDate('2024-02-29'));
+
 console.log("\n=== DEMO MODUĻA BEIGAS ===");
+
 
 
 

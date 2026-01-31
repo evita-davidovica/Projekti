@@ -50,16 +50,17 @@ console.log('calculateAge(new Date("2010-06-15")):', utils.calculateAge(new Date
 console.log('calculateAge(new Date(new Date("2025-22-07"))):', utils.calculateAge(new Date("2025-07-22"))); // Aprēķina vecumu, nav pilnu gadu (0 gadi)
 
 // Validācijas testi
-const validators = require(`./validators/validators.js`);
+const validators = require(`./validators/validators.js`); 
 console.log("\nValidācijas testi:");
 
-console.log("isEmail('test@example.com'):", validators.isEmail('test@example.com'));
-console.log("isPhoneNumber('+37112345678'):", validators.isPhoneNumber('+37112345678'));
-console.log("isValidAge(25):", validators.isValidAge(25));
-console.log("isStrongPassword('Password'):", validators.isStrongPassword('Password'));
-console.log("isValidDate('2024-02-29'):", validators.isValidDate('2024-02-29'));
+console.log("isEmail('test@example.com'):", validators.isEmail('test@example.com')); // Pārbauda vai derīgs e-pasts
+console.log("isPhoneNumber('+37112345678'):", validators.isPhoneNumber('+37112345678')); // Pārbauda vai telefona numurs ir Latvijas formātā +371xxxxxxxx
+console.log("isValidAge(25):", validators.isValidAge(25)); // Pārbauda vecumu no 0-150 gadiem
+console.log("isStrongPassword('Password'):", validators.isStrongPassword('Password')); // Pārbauda vai parole ir pareiza
+console.log("isValidDate('2024-02-29'):", validators.isValidDate('2024-02-29')); // Pārbauda vai datuma formāts ir pareizs yyyy-mm-dd un vai ir derīgs
 
-console.log("\n=== DEMO MODUĻA BEIGAS ===");
+console.log("\n=== DEMO MODUĻA BEIGAS ==="); 
+
 
 
 

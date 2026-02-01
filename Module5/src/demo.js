@@ -60,7 +60,7 @@ console.log("isStrongPassword('Password'):", validators.isStrongPassword('Passwo
 console.log("isValidDate('2024-02-29'):", validators.isValidDate('2024-02-29')); // Pārbauda vai datuma formāts ir pareizs yyyy-mm-dd un vai ir derīgs
 
 // Higher-order funkciju testi
-const higher = require('./higher-order.js');
+const higher = require('./utils/higher-order.js');
 const nums = [1, 2, 3, 4, 5];
 console.log("\n=== Higher-order funkciju testi ===");
 

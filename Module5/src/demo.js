@@ -59,7 +59,21 @@ console.log("isValidAge(25):", validators.isValidAge(25)); // Pārbauda vecumu n
 console.log("isStrongPassword('Password'):", validators.isStrongPassword('Password')); // Pārbauda vai parole ir pareiza
 console.log("isValidDate('2024-02-29'):", validators.isValidDate('2024-02-29')); // Pārbauda vai datuma formāts ir pareizs yyyy-mm-dd un vai ir derīgs
 
+// Higher-order funkciju testi
+const higher = require('./higher-order.js');
+const nums = [1, 2, 3, 4, 5];
+console.log("\n=== Higher-order funkciju testi ===");
+
+console.log("myForEach (izvada katru skaitli):", higher.myForEach(nums, n => console.log(n))); // Izvada katru skaitli
+
+console.log("myMap (reizināts ar 2):", higher.myMap(nums, n => n * 2)); // Reizināts ar 2
+
+console.log("myFilter (pāra skaitļi):", higher.myFilter(nums, n => n % 2 === 0)); // Tikai pāra skatļi tiek atlasīti
+
+console.log("myReduce (summa):", higher.myReduce(nums, (acc, n) => acc + n, 0)); // Saskaita visus skaitļus
+
 console.log("\n=== DEMO MODUĻA BEIGAS ==="); 
+
 
 
 

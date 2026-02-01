@@ -64,7 +64,8 @@ const higher = require('./utils/higher-order.js');
 const nums = [1, 2, 3, 4, 5];
 console.log("\n=== Higher-order funkciju testi ===");
 
-console.log("myForEach (izvada katru skaitli):", higher.myForEach(nums, n => console.log(n))); // Izvada katru skaitli
+console.log("myForEach (izvada katru skaitli):"); 
+higher.myForEach(nums, n => console.log(n)); // Izvada katru skaitli
 
 console.log("myMap (reizināts ar 2):", higher.myMap(nums, n => n * 2)); // Reizināts ar 2
 

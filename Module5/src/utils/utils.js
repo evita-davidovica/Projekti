@@ -137,11 +137,23 @@ function calculateAge(birthDate) {
     return age;
 }
 
+function calcLineTotal(item) {
+    return item.qty * item.price;
+}
+
+function calcGrandTotal(items) {
+    return items.reduce((sum, item) => sum + calcLineTotal(item), 0);
+}
+
+function countUnits(items) {
+    return items.reduce((sum, item) => sum + item.qty, 0);
+}
+
 module.exports = {
     capitalize, truncate, countWords,
     clamp, isPrime, factorial,
     sum, average,
-    formatDate, calculateAge 
+    formatDate, calculateAge, calcLineTotal, calcGrandTotal, countUnits
 };
 
 

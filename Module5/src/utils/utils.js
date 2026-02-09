@@ -137,16 +137,16 @@ function calculateAge(birthDate) {
     return age;
 }
 
-function calcLineTotal(item) {
-    return item.qty * item.price;
+function calcLineTotal(item) { // Aprēķina preces kopējo cenu
+    return item.qty * item.price; // Daudzums reizināts ar cenu
 }
 
-function calcGrandTotal(items) {
-    return items.reduce((sum, item) => sum + calcLineTotal(item), 0);
+function calcGrandTotal(items) { // Aprēķina visu preču kopējo cenu
+    return items.reduce((sum, item) => sum + calcLineTotal(item), 0); // Kopējo preču summa
 }
 
-function countUnits(items) {
-    return items.reduce((sum, item) => sum + item.qty, 0);
+function countUnits(items) { // Saaskaita visu preču daudzumu
+    return items.reduce((sum, item) => sum + item.qty, 0); // Kopējais preču daudzums
 }
 
 module.exports = {

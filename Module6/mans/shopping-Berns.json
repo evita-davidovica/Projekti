@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "name": "Sula",
+    "qty": 1,
+    "price": 1.49
+  },
+  {
+    "name": "Saldejums",
+    "qty": 2,
+    "price": 0.99
+  },
+  {
+    "name": "Banani",
+    "qty": 3,
+    "price": 0.49
+  },
+  {
+    "name": "Konfektes",
+    "qty": 1,
+    "price": 4.99
+  }
+]

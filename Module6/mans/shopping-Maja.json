@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "name": "Fairy",
+    "qty": 1,
+    "price": 2.59
+  },
+  {
+    "name": "Zobu pasta",
+    "qty": 2,
+    "price": 4.59
+  },
+  {
+    "name": "Virtuves dvieli",
+    "qty": 1,
+    "price": 1.99
+  },
+  {
+    "name": "Tirisanas lidzeklis",
+    "qty": 1,
+    "price": 3.59
+  }
+]

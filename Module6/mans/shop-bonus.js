@@ -1,25 +1,88 @@
 const fs = require('fs');
 const readline = require('readline');
-const { loadList, saveList, loadPrices, savePrices, getPrice, setPrice } = require('./storage');
+const path = require('path');
+const { loadList, saveList, loadPrices, savePrices, getPrice, setPrice } = require('./storage-bonus.js');
+
+const PRICES_FILE = path.join(__dirname, 'prices-bonus.json');
 
 // Lietotāja izvēle
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout});
 
-    function askListName() {
+    function askQuestion(prompt) {
         return new Promise(resolve => {
-            rl.question('Ievadiet saraksta nosaukumu vai jaunā saraksta nosaukumu: ', name => {
-                const filename = `shopping-${name}.json`;
-                if (!fs.existsSync(filename)) {
-                    fs.writeFileSync(filename, '[]');
-                    console.log(`Izveidots jauns saraksts: ${filename}`);
-                } else {
-                    console.log(`Izvēlēties esošu sarakstu: ${filename}`);
-                }
-                resolve(filename);
-            });
+            rl.question(prompt, answer => resolve(answer.trim()));
         });
+    }
+
+    function getListFiles() {
+        return fs.readdirSync(__dirname)
+            .filter((file) => /^shopping-.*\.json$/i.test(file))
+            .map((file) => path.join(__dirname, file));
+    }
+
+    async function createNewList() {
+        while (true) {
+            const name = await askQuestion('Ievadiet jaunā saraksta nosaukumu: ');
+            if (!name) {
+                console.log('Nosaukums nevar būt tukšs.');
+                continue;
+            }
+
+            const filename = path.join(__dirname, `shopping-${name}.json`);
+            if (!fs.existsSync(filename)) {
+                fs.writeFileSync(filename, '[]');
+                console.log(`Izveidots jauns saraksts: ${path.basename(filename)}`);
+            } else {
+                console.log(`Izvēlēties esošu sarakstu: ${path.basename(filename)}`);
+            }
+            return filename;
+        }
+    }
+
+    async function chooseExistingList(listFiles) {
+        if (listFiles.length === 0) {
+            console.log('Nav esošu sarakstu. Izveidosim jaunu.');
+            return createNewList();
+        }
+
+        console.log('Pieejamie saraksti:');
+        listFiles.forEach((file, idx) => {
+            const display = path.basename(file).replace(/^shopping-/, '').replace(/\.json$/i, '');
+            console.log(` ${idx + 1}. ${display}`);
+        });
+
+        const choice = await askQuestion('Ievadiet numuru vai saraksta nosaukumu: ');
+        const number = parseInt(choice, 10);
+        if (!Number.isNaN(number) && number >= 1 && number <= listFiles.length) {
+            return listFiles[number - 1];
+        }
+
+        if (!choice) {
+            console.log('Nav izvēles, izveidosim jaunu sarakstu.');
+            return createNewList();
+        }
+
+        const filename = path.join(__dirname, `shopping-${choice}.json`);
+        if (!fs.existsSync(filename)) {
+            fs.writeFileSync(filename, '[]');
+            console.log(`Izveidots jauns saraksts: ${path.basename(filename)}`);
+        } else {
+            console.log(`Izvēlēts saraksts: ${path.basename(filename)}`);
+        }
+        return filename;
+    }
+
+    async function askListName() {
+        const mode = (await askQuestion('Izvēlieties: [J]auns vai [E]sošs saraksts? > ')).toLowerCase();
+        const listFiles = getListFiles();
+
+        if (mode === 'e') {
+            return chooseExistingList(listFiles);
+        }
+
+        return createNewList();
     }
 
     // Funkcija saraksta eksportam uz .txt formātu
@@ -52,14 +115,21 @@ const rl = readline.createInterface({
         }
 
         const listFile = await askListName();
-        const prices = loadPrices();
+        const prices = loadPrices(PRICES_FILE);
         let list = loadList(listFile);
 
         const cmd = args[0].toLowerCase();
 
         if (cmd === 'add') {
-            const name = args[1];
-            let qty = parseFloat(args[2]) || 1;
+            let qty = 1;
+            let nameParts = args.slice(1);
+            const lastArg = nameParts[nameParts.length - 1];
+            const lastQty = parseFloat(lastArg);
+            if (nameParts.length > 1 && !Number.isNaN(lastQty)) {
+                qty = lastQty;
+                nameParts = nameParts.slice(0, -1);
+            }
+            const name = nameParts.join(' ').trim();
 
             let price = getPrice(prices, name);
 
@@ -69,14 +139,14 @@ const rl = readline.createInterface({
                 if (answer.toLowerCase() === 'm') {
                     const newPrice = parseFloat(await new Promise(res => rl.question('Jaunā cena: > ', res)));
                     setPrice(prices, name, newPrice);
-                    savePrices(prices);
+                    savePrices(PRICES_FILE, prices);
                     price = newPrice;
                     console.log(`Jaunā cena saglabāta: ${name} ${price.toFixed(2)} EUR`);
                 }
             } else {
                 const newPrice = parseFloat(await new Promise(res => rl.question('Cena nav zināma. Ievadiet cenu: > ', res)));
                 setPrice(prices, name, newPrice);
-                savePrices(prices);
+                savePrices(PRICES_FILE, prices);
                 price = newPrice;
                 console.log(`Cena saglabāta: ${name} (${price.toFixed(2)} EUR)`);
             }

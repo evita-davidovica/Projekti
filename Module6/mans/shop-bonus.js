@@ -1,6 +1,6 @@
 const fs = require('fs');
-const readline = reguire('readline');
-const { loadList, saveList, loadPrices, savePrices, getPrice, setPrice } = reguire('./storage');
+const readline = require('readline');
+const { loadList, saveList, loadPrices, savePrices, getPrice, setPrice } = require('./storage');
 
 // Lietotāja izvēle
 const rl = readline.createInterface({
@@ -85,11 +85,11 @@ const rl = readline.createInterface({
             saveList(listFile, list);
             console.log(`Pievienots: ${name} * ${qty} (${price.toFixed(2)} EUR/gab.) = ${(price*qty).toFixed(2)} EUR`);
             
-            } else if (cmd === 'list') {}
-             console.log('Iepirkumu saraksts:');
-             list.forEach((item, idx) => {
-                console.log(` ${idx + 1}. ${item.name} * $item.qty - ${item.price.toFixed(2)} EUR/gab. - ${(item.price*item.qty).toFixed(2)} EUR`);
-});
+                } else if (cmd === 'list') {
+                 console.log('Iepirkumu saraksts:');
+                 list.forEach((item, idx) => {
+                     console.log(` ${idx + 1}. ${item.name} * ${item.qty} - ${item.price.toFixed(2)} EUR/gab. - ${(item.price*item.qty).toFixed(2)} EUR`);
+                 });
 
 } else if (cmd === 'total') {
  const total = list.reduce((sum, item) => sum + item.price*item.qty, 0);

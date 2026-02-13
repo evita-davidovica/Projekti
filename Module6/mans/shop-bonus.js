@@ -104,6 +104,7 @@ const rl = readline.createInterface({
         console.log(`Saraksts eksportēts uz ${txtFile}`);
         }
         
+        
         // Pagriež galveno loģiku ar komandrindu
         async function main() {
         const args = process.argv.slice(2);
@@ -114,9 +115,13 @@ const rl = readline.createInterface({
         return;
         }
 
+        async function main() {
         const listFile = await askListName();
-        const prices = loadPrices(PRICES_FILE);
+        const prices = loadPrices();
         let list = loadList(listFile);
+        }
+        main();
+
 
         const cmd = args[0].toLowerCase();
 
@@ -182,3 +187,4 @@ rl.close();
 }
 
 main();
+

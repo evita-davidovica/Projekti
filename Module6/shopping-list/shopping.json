@@ -1,1 +1,7 @@
-[]
+[
+  {
+    "name": "deserts",
+    "qty": 2,
+    "price": 0.5
+  }
+]

@@ -1,0 +1,13 @@
+{
+    "name": "weather-dashboard",
+    "version": "1.0.0",
+    "description": "Laikapstākļu CLI ar API un datu saglabāšanu",
+    "main": "index.js",
+    "scripts": {
+    "start": "node index.js",
+    "test-api": "node test-api.js"
+},
+"keywords": ["weather", "cli", "nodejs"],
+"author": "Evita",
+"license": "MIT"
+}

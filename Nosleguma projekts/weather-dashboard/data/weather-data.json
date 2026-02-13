@@ -1,0 +1,13 @@
+{
+    "locations": [
+        {
+            "id": "loc_001",
+            "name": "Rīga",
+            "country": "Latvia",
+            "latitude": 56.9496,
+            "longitude": 24.1052,
+            "addedAt": "2026-02-13T15:10:00Z"
+        }
+    ],
+    "weatherHistory": []
+}

@@ -63,6 +63,19 @@ function setPrice(prices, name, price) { // Funkcija, kas saglabā cenu priekš 
     prices[name] = price; // Atjaunina cenu priekš dotā nosaukuma ar jauno vērtību
 }
 
+function exportListToText(listName, items) {
+    let total = 0;
+    let text = `Iepirkumu saraksts: ${listName}\n\n`;
+    items.forEach((item) => {
+        const sum = item.qty * item.price;
+        total += sum;
+        text += `- ${item.name} (${item.qty} gab.) - ${sum.toFixed(2)} EUR\n`;
+    });
+    text += `\Kopā: ${total.toFixed(2)} EUR\n`;
+    return text;
+}
 
-module.exports = { loadList, saveList, loadPrices, savePrices, getPrice, setPrice };
+
+module.exports = { loadList, saveList, loadPrices, savePrices, getPrice, setPrice, exportListToText };
+
 

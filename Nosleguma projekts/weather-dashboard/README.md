@@ -15,7 +15,9 @@ CLI rīks ar Open-Meteo API, datu saglabāšanu un statistiku.
 ## Piemēri
 1. Iegūt Rīgas laikapstākļus
 2. Skatīt vēsturi
-3. Iziet
+3. Iespēja pievienot jaunas lokācijas
+4. Iespēja izvēlēties lokāciju no saraksta
+5. Iziet
 
 ## Failu struktūra
 - `weather-data.json` - galvenie dati

@@ -33,6 +33,10 @@ async function testOpenMeteoAPI() {
             Vēja ātrums: ${current.wind_speed_10m} m/s
             Laika kods: ${current.weather_code}
             `);
+
+const { displayWeather } = require('./display.js');
+displayWeather(current, riga.name || 'Rīga');
+
     } catch (error) {
         console.error('Kļūda, iegūstot datus no Open-Meteo API:', error);
     }

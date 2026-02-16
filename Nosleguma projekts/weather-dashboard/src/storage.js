@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const DATA_FILE = path.join(__dirname, '../data/weather-data.json');
+
 function findDataFile() {
     const possiblePath = [
         path.join(__dirname, 'weather-data.json'),
@@ -17,24 +19,22 @@ function findDataFile() {
 }
 
 function loadData() {
-    const dataFile = findDataFile();
+    const dataFile = findDataFile() || DATA_FILE;
 
-    if (dataFile) {
-        try {
-            return JSON.parse(fs.readFileSync(dataFile, 'utf8'));
-        } catch (error) {
-            console.log('storage.js: bojāti dati weather-data.json');
+    try {
+        if (!fs.existsSync(dataFile)) {
+            return { locations: [], weatherHistory: [] };
         }
+        const raw = fs.readFileSync(dataFile, 'utf-8');
+        return JSON.parse(raw);
+    } catch (error) {
+        console.error('Nevar ielādēt datus:', error.message);
+        return { locations: [], weatherHistory: [] };
     }
-
-return {
-    locations: [],
-    weatherHistory: []
-};
 }
 
 function saveData(data) {
-    const dataFile = findDataFile() || path.join(__dirname, 'weather-data.json');
+    const dataFile = findDataFile() || DATA_FILE;
 
     try {
         fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));

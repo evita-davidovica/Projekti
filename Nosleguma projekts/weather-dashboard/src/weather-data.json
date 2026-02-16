@@ -1,6 +1,91 @@
 {
-  "locations": [],
+  "locations": [
+    {
+      "id": "loc_001",
+      "name": "Rīga",
+      "country": "Latvia",
+      "latitude": 56.9496,
+      "longitude": 24.1052,
+      "addedAt": "2026-02-16T14:37:47.922Z"
+    },
+    {
+      "id": "loc_002",
+      "name": "Oslo",
+      "country": "Norvēģija",
+      "latitude": 59.91273,
+      "longitude": 10.74609,
+      "addedAt": "2026-02-16T14:38:40.429Z"
+    },
+    {
+      "id": "loc_003",
+      "name": "Liepāja",
+      "country": "Latvija",
+      "latitude": 56.50474,
+      "longitude": 21.01085,
+      "addedAt": "2026-02-16T14:41:20.730Z"
+    }
+  ],
   "weatherHistory": [
+    {
+      "locationId": "loc_001",
+      "fetchedAt": "2026-02-16T15:02:21.490Z",
+      "time": "2026-02-16T17:00",
+      "interval": 900,
+      "temperature_2m": -2.5,
+      "relative_humidity_2m": 81,
+      "wind_speed_10m": 7.2,
+      "weather_code": 3
+    },
+    {
+      "locationId": "loc_001",
+      "fetchedAt": "2026-02-16T14:51:57.215Z",
+      "time": "2026-02-16T16:45",
+      "interval": 900,
+      "temperature_2m": -2.4,
+      "relative_humidity_2m": 81,
+      "wind_speed_10m": 7.2,
+      "weather_code": 3
+    },
+    {
+      "locationId": "loc_003",
+      "fetchedAt": "2026-02-16T14:41:33.698Z",
+      "time": "2026-02-16T16:30",
+      "interval": 900,
+      "temperature_2m": -5,
+      "relative_humidity_2m": 70,
+      "wind_speed_10m": 9.7,
+      "weather_code": 0
+    },
+    {
+      "locationId": "loc_002",
+      "fetchedAt": "2026-02-16T14:38:53.709Z",
+      "time": "2026-02-16T15:30",
+      "interval": 900,
+      "temperature_2m": -2.8,
+      "relative_humidity_2m": 55,
+      "wind_speed_10m": 9.4,
+      "weather_code": 3
+    },
+    {
+      "locationId": "loc_001",
+      "fetchedAt": "2026-02-16T14:37:48.149Z",
+      "time": "2026-02-16T16:30",
+      "interval": 900,
+      "temperature_2m": -2,
+      "relative_humidity_2m": 81,
+      "wind_speed_10m": 6.8,
+      "weather_code": 3
+    },
+    {
+      "locationId": "loc_001",
+      "fetchedAt": "2026-02-16T14:27:59.392Z",
+      "time": "2026-02-16T16:15",
+      "interval": 900,
+      "temperature_2m": -1.9,
+      "relative_humidity_2m": 80,
+      "wind_speed_10m": 6.8,
+      "weather_code": 3
+    },
     {
       "locationId": "loc_001",
       "fetchedAt": "2026-02-16T11:21:10.629Z",

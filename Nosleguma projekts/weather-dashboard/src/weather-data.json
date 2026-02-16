@@ -1,0 +1,15 @@
+{
+  "locations": [],
+  "weatherHistory": [
+    {
+      "locationId": "loc_001",
+      "fetchedAt": "2026-02-16T11:21:10.629Z",
+      "time": "2026-02-16T13:15",
+      "interval": 900,
+      "temperature_2m": -3.9,
+      "relative_humidity_2m": 79,
+      "wind_speed_10m": 6.5,
+      "weather_code": 3
+    }
+  ]
+}

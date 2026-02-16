@@ -23,9 +23,37 @@
       "latitude": 56.50474,
       "longitude": 21.01085,
       "addedAt": "2026-02-16T14:41:20.730Z"
+    },
+    {
+      "id": "loc_004",
+      "name": "Kolka",
+      "country": "Latvija",
+      "latitude": 57.73988,
+      "longitude": 22.58575,
+      "addedAt": "2026-02-16T20:58:59.410Z"
     }
   ],
   "weatherHistory": [
+    {
+      "locationId": "loc_004",
+      "fetchedAt": "2026-02-16T20:59:15.823Z",
+      "time": "2026-02-16T22:45",
+      "interval": 900,
+      "temperature_2m": -4.3,
+      "relative_humidity_2m": 90,
+      "wind_speed_10m": 11.5,
+      "weather_code": 1
+    },
+    {
+      "locationId": "loc_001",
+      "fetchedAt": "2026-02-16T20:58:04.620Z",
+      "time": "2026-02-16T22:45",
+      "interval": 900,
+      "temperature_2m": -5.5,
+      "relative_humidity_2m": 82,
+      "wind_speed_10m": 9.7,
+      "weather_code": 0
+    },
     {
       "locationId": "loc_001",
       "fetchedAt": "2026-02-16T15:02:21.490Z",

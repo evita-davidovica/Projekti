@@ -65,10 +65,16 @@ async function getRigaWeather() {
         displayWeather(current, 'Rīga');
 
     } catch (error) {
-        console.log('Tīkla kļūda. Izmanto pēdējos datus.');
+        console.log('Tīkla kļūda. Izmanto KEŠATMIŅU.');
+        const cached = appData.weatherHistory[0];
+        if (cached) {
+            displayWeather(cached, 'KEŠS');
+        } else {
+            console.log('Nav kešatmiņas datu. Lūdzu, pārbaudiet savu interneta savienojumu un mēģiniet vēlreiz.');
+        }
+    }
         showCatchWeather('loc_001');
     }
-}
 
 function showHistory() {
     if (appData.weatherHistory.length === 0) {

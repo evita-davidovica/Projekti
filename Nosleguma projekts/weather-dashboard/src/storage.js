@@ -60,6 +60,10 @@ function saveData(data) {
     const dataFile = findDataFile() || DATA_FILE;
 
     try {
+        const dir = path.dirname(dataFile);
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+        }
         fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
         console.log('Dati saglabāti');
     } catch (error) {

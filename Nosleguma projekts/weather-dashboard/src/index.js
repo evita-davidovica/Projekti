@@ -34,7 +34,7 @@ async function handleChoice(choice) {
             await getRigaWeather();
             break;
         case '2':
-            showHistory(appData);
+            await showHistory(appData, rl);
             break;
         case '3':
             listLocations();
@@ -122,7 +122,7 @@ async function addLocation() {
         console.log(`${index + 1}. ${loc.name}, ${loc.country} (${loc.latitude.toFixed(4)}, ${loc.longitude.toFixed(4)})`);
     });
 
-    const choice = await ask(`Izvēlies numuru (1-${results.length}): `);
+    const choice = await ask(`\nIzvēlies numuru (1-${results.length}): `);
     const idx = Number(choice) - 1;
     if (!Number.isInteger(idx) || idx < 0 || idx >= results.length) {
         console.log('Nepareiza izvēle.');
@@ -192,7 +192,10 @@ async function getWeatherForLocation(location, labelOverride) {
             appData.weatherHistory.unshift({
                 locationId: location.id,
                 fetchedAt: new Date().toISOString(),
-                ...current
+                temperature_2m: current.temperature_2m,
+                relative_humidity_2m: current.relative_humidity_2m,
+                wind_speed_10m: current.wind_speed_10m,
+                weather_code: current.weather_code
             });
             saveData(appData);
             console.log('Dati saglabāti kešatmiņā.');

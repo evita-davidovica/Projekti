@@ -26,11 +26,34 @@ function loadData() {
             return { locations: [], weatherHistory: [] };
         }
         const raw = fs.readFileSync(dataFile, 'utf-8');
-        return JSON.parse(raw);
+        let data = JSON.parse(raw);
+        
+        if (data.weatherHistory && Array.isArray(data.weatherHistory)) {
+            let needsSave = false;
+            data.weatherHistory.forEach(record => {
+                if (!record.weather_code && record.weather_code !== 0) {
+            
+                    record.weather_code = inferWeatherCode(record);
+                    needsSave = true;
+                }
+            });
+            if (needsSave) {
+                saveData(data);
+            }
+        }
+        
+        return data;
     } catch (error) {
         console.error('Nevar ielādēt datus:', error.message);
         return { locations: [], weatherHistory: [] };
     }
+}
+
+function inferWeatherCode(record) {
+    if (record.temperature_2m < -15) return 75;
+    if (record.relative_humidity_2m > 90) return 45;
+    if (record.wind_speed_10m > 15) return 80; 
+    return 3; 
 }
 
 function saveData(data) {

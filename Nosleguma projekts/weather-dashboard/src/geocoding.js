@@ -4,7 +4,7 @@ async function geocodeCity(name, limit = 5) {
 
 	try {
 		const controller = new AbortController();
-		const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 sekunžu timeout
+		const timeoutId = setTimeout(() => controller.abort(), 8000);
 		
 		const response = await fetch(url, { signal: controller.signal });
 		clearTimeout(timeoutId);
@@ -25,17 +25,8 @@ async function geocodeCity(name, limit = 5) {
 			longitude: item.longitude
 		}));
 	} catch (error) {
-		if (error.name === 'AbortError') {
-			console.log('\n⚠ Geocoding API pieprasījums pārsniedza laika limitu.');
-			console.log('  Mēģini vēlreiz.\n');
-		} else if (error.message.includes('fetch failed')) {
-			console.log('\n⚠ Neizdevās savienoties ar Geocoding serveri.');
-			console.log('  Pārbaudi interneta savienojumu.\n');
-		} else {
-			console.log('\n⚠ Neizdevās atrast lokāciju.');
-			console.log(`  Detaļas: ${error.message}\n`);
-		}
-		return [];
+	
+		return { error: error.name === 'AbortError' ? 'timeout' : 'network' };
 	}
 }
 

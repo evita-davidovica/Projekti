@@ -118,6 +118,23 @@ async function addLocation() {
     }
 
     const results = await geocodeCity(query);
+    
+    if (results && results.error) {
+        if (results.error === 'timeout') {
+            showError(
+                'Geocoding servera pieprasījums pārsniedza laika limitu.',
+                'Mēģini vēlreiz.'
+            );
+        } else {
+            showError(
+                'Neizdevās savienoties ar serveri.',
+                'Pārbaudi interneta savienojumu.',
+                'Vai vēlies ievadīt koordinātes manuāli? Sazinieties ar administrātoru.'
+            );
+        }
+        return;
+    }
+    
     if (!results.length) {
         showError(
             `Pilsēta "${query}" nav atrasta.`,
@@ -191,7 +208,7 @@ async function getWeatherForLocation(location, labelOverride) {
         const url = `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&timezone=auto`;
         
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 sekunžu timeout
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
         
         const response = await fetch(url, { signal: controller.signal });
         clearTimeout(timeoutId);

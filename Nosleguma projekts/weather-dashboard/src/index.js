@@ -104,6 +104,12 @@ function ask(question) {
     return new Promise(resolve => rl.question(question, answer => resolve(answer.trim())));
 }
 
+function showError(title, ...messages) {
+    console.log(`\n⚠ ${title}`);
+    messages.forEach(msg => console.log(`  ${msg}`));
+    console.log('');
+}
+
 async function addLocation() {
     const query = await ask('Ievadi pilsētas nosaukumu: ');
     if (!query) {
@@ -113,7 +119,10 @@ async function addLocation() {
 
     const results = await geocodeCity(query);
     if (!results.length) {
-        console.log('Netika atrasti rezultāti.');
+        showError(
+            `Pilsēta "${query}" nav atrasta.`,
+            'Pārliecinies, ka nosaukums ir pareizs.'
+        );
         return;
     }
 
@@ -212,10 +221,31 @@ async function getWeatherForLocation(location, labelOverride) {
         displayWeather(current, labelOverride || location.name);
     } catch (error) {
         if (error.name === 'AbortError') {
-            console.log('API pieprasījums pārsnēdza laika limitu (10s). Izmanto KEŠATMIŅU.');
+            showError(
+                'API pieprasījums pārsnēdza laika limitu.',
+                'Mēģini vēlreiz pēc dažām sekundēm.'
+            );
+        } else if (error.message.includes('fetch failed')) {
+            showError(
+                'Neizdevās savienoties ar serveri.',
+                'Pārbaudi interneta savienojumu.'
+            );
+            const viewCache = await ask('Vai vēlies apskatīt pēdējos kešotos datus? (j/n): ');
+            if (viewCache.toLowerCase() !== 'j' && viewCache.toLowerCase() !== 'jā') {
+                return;
+            }
+        } else if (error.message.includes('API kļūda:')) {
+            const statusMatch = error.message.match(/\d{3}/);
+            const status = statusMatch ? statusMatch[0] : 'nezināms';
+            showError(
+                `API atgrieza kļūdu (statuss: ${status}).`,
+                'Mēģini vēlreiz pēc dažām minūtēm.'
+            );
         } else {
-            console.log('Tīkla kļūda. Izmanto KEŠATMIŅU.');
-            console.log(`Kļūdas ziņojums: ${error.message}`);
+            showError(
+                'Radās negaidīta kļūda.',
+                `Detaļas: ${error.message}`
+            );
         }
         const cached = appData.weatherHistory.find(record => record.locationId === location.id);
         if (cached) {

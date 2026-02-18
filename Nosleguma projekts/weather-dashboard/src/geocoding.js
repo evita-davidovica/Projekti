@@ -26,9 +26,14 @@ async function geocodeCity(name, limit = 5) {
 		}));
 	} catch (error) {
 		if (error.name === 'AbortError') {
-			console.log('Geocoding API pieprasījums pārsniedza laika limitu (8s).');
+			console.log('\n⚠ Geocoding API pieprasījums pārsniedza laika limitu.');
+			console.log('  Mēģini vēlreiz.\n');
+		} else if (error.message.includes('fetch failed')) {
+			console.log('\n⚠ Neizdevās savienoties ar Geocoding serveri.');
+			console.log('  Pārbaudi interneta savienojumu.\n');
 		} else {
-			console.log('Neizdevās atrast lokāciju:', error.message);
+			console.log('\n⚠ Neizdevās atrast lokāciju.');
+			console.log(`  Detaļas: ${error.message}\n`);
 		}
 		return [];
 	}

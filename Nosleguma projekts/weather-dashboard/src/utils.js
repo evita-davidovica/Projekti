@@ -23,7 +23,10 @@ const weatherCodes = {
 };
 
 function getDescription(code) {
-    return weatherCodes[code] || `Kods ${code}`;
+    if (code === undefined || code === null) {
+        return '❓ Nav informācijas';
+    }
+    return weatherCodes[code] || `❓ Kods ${code}`;
 }
 
 module.exports = { getDescription };

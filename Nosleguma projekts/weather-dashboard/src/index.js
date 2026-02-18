@@ -180,7 +180,13 @@ async function getWeatherForLocation(location, labelOverride) {
 
     try {
         const url = `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&timezone=auto`;
-        const response = await fetch(url);
+        
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 sekunžu timeout
+        
+        const response = await fetch(url, { signal: controller.signal });
+        clearTimeout(timeoutId);
+        
         if (!response.ok) throw new Error(`API kļūda: ${response.status}`);
 
         const data = await response.json();
@@ -205,7 +211,12 @@ async function getWeatherForLocation(location, labelOverride) {
 
         displayWeather(current, labelOverride || location.name);
     } catch (error) {
-        console.log('Tīkla kļūda. Izmanto KEŠATMIŅU.');
+        if (error.name === 'AbortError') {
+            console.log('API pieprasījums pārsnēdza laika limitu (10s). Izmanto KEŠATMIŅU.');
+        } else {
+            console.log('Tīkla kļūda. Izmanto KEŠATMIŅU.');
+            console.log(`Kļūdas ziņojums: ${error.message}`);
+        }
         const cached = appData.weatherHistory.find(record => record.locationId === location.id);
         if (cached) {
             displayWeather(cached, 'KEŠATMIŅA');

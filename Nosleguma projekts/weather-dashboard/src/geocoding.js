@@ -3,7 +3,12 @@ async function geocodeCity(name, limit = 5) {
 	const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encoded}&count=${limit}&language=lv&format=json`;
 
 	try {
-		const response = await fetch(url);
+		const controller = new AbortController();
+		const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 sekunžu timeout
+		
+		const response = await fetch(url, { signal: controller.signal });
+		clearTimeout(timeoutId);
+		
 		if (!response.ok) {
 			throw new Error(`Geocoding API kļūda: ${response.status}`);
 		}
@@ -20,7 +25,11 @@ async function geocodeCity(name, limit = 5) {
 			longitude: item.longitude
 		}));
 	} catch (error) {
-		console.log('Neizdevās atrast lokāciju:', error.message);
+		if (error.name === 'AbortError') {
+			console.log('Geocoding API pieprasījums pārsniedza laika limitu (8s).');
+		} else {
+			console.log('Neizdevās atrast lokāciju:', error.message);
+		}
 		return [];
 	}
 }

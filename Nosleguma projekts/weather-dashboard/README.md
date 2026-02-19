@@ -4,7 +4,7 @@ CLI rīks ar Open-Meteo API, Geocoding API, datu saglabāšanu un statistiku.
 
 ## Uzstādīšana
 1. `npm install` (pēc izvēles)
-2. `npm start vai node index.js`
+2. `node index.js`
 
 
 ## Lietošana
@@ -12,7 +12,7 @@ CLI rīks ar Open-Meteo API, Geocoding API, datu saglabāšanu un statistiku.
 2. `node index.js` - tests darbojas
 3. Pēc tam seko Izvēlne piedāvātajām iespējām, jāievada vajadzīgais skaitlis, lai izvēlētos.
 
-## Piemēri
+## Piemēri izvēlnei
 1. Iegūt Rīgas laikapstākļus (kā noklusējuma pilsēta)
 2. Skatīt vēsturi
 3. Izvada saglabātās lokācijas

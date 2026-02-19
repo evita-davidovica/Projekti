@@ -31,9 +31,65 @@
       "latitude": 57.73988,
       "longitude": 22.58575,
       "addedAt": "2026-02-16T20:58:59.410Z"
+    },
+    {
+      "id": "loc_005",
+      "name": "Ogre",
+      "country": "Latvija",
+      "latitude": 56.8162,
+      "longitude": 24.61401,
+      "addedAt": "2026-02-18T09:14:49.523Z"
+    },
+    {
+      "id": "loc_006",
+      "name": "Sigulda",
+      "country": "Latvija",
+      "latitude": 57.15375,
+      "longitude": 24.85953,
+      "addedAt": "2026-02-19T14:59:10.828Z"
     }
   ],
   "weatherHistory": [
+    {
+      "locationId": "loc_002",
+      "fetchedAt": "2026-02-19T14:59:52.758Z",
+      "temperature_2m": -3.7,
+      "relative_humidity_2m": 63,
+      "wind_speed_10m": 2.5,
+      "weather_code": 2
+    },
+    {
+      "locationId": "loc_001",
+      "fetchedAt": "2026-02-19T14:56:25.283Z",
+      "temperature_2m": -5.6,
+      "relative_humidity_2m": 82,
+      "wind_speed_10m": 15.1,
+      "weather_code": 3
+    },
+    {
+      "locationId": "loc_005",
+      "fetchedAt": "2026-02-18T09:15:02.982Z",
+      "temperature_2m": -10.7,
+      "relative_humidity_2m": 74,
+      "wind_speed_10m": 16.6,
+      "weather_code": 3
+    },
+    {
+      "locationId": "loc_002",
+      "fetchedAt": "2026-02-18T08:53:44.966Z",
+      "temperature_2m": -5.3,
+      "relative_humidity_2m": 85,
+      "wind_speed_10m": 5.4,
+      "weather_code": 3
+    },
+    {
+      "locationId": "loc_001",
+      "fetchedAt": "2026-02-18T08:53:03.949Z",
+      "temperature_2m": -9.7,
+      "relative_humidity_2m": 74,
+      "wind_speed_10m": 15.8,
+      "weather_code": 3
+    },
     {
       "locationId": "loc_001",
       "fetchedAt": "2026-02-18T08:12:37.763Z",

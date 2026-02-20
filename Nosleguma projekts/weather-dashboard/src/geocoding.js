@@ -25,7 +25,7 @@ async function geocodeCity(name, limit = 5) {
 			longitude: item.longitude
 		}));
 	} catch (error) {
-	
+		console.error('Kļūda, iegūstot datus no Geocoding API:', error);
 		return { error: error.name === 'AbortError' ? 'timeout' : 'network' };
 	}
 }
